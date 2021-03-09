@@ -1,0 +1,5 @@
+guild-json/*
+__pycache__/*
+!guild-json/emp.ty
+test.py
+.env
