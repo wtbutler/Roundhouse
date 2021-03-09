@@ -12,31 +12,18 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_SERVER')
 
-bot = commands.Bot(command_prefix='/')
+bot = commands.Bot(command_prefix='/', help_command=None)
 
 
 
 
 
-@bot.command(name='add', help='add a regex macro that expands into a proper roll')
+@bot.command(name='add')
 async def add_macro(ctx):
     message_in = f"{ctx.message.content[len(ctx.prefix+ctx.command.name+' '):]}"
     mention = ctx.author.mention
     if message_in == 'help':
-        await ctx.send(rf'''
-Syntax to add a macro:
-```/add <pattern> => <target> | <test>```
-This adds the rule that <pattern> is replaced with <target>, substituting groups, and runs it once on <test>
-for example:
-```/add F(-?[0-9]+) => 4dF+\1 | F3```
-might return:
-> `4dF+3` = (+--+)+3 = 3
-and would have the rule 
-```/add F(-?[0-9]+) => 4dF+\1 | F3```
-saved until deleted
-
-See https://docs.python.org/3/library/re.html and github.readme for more info
-        ''')
+        await ctx.send(rf"https://github.com/wtbutler/Roundhouse/blob/main/README.md#macros")
         return
     macro = re.compile(r"^(?P<pattern>.+) => (?P<target>.+) \| (?P<test>.+)$")
     match = macro.match(message_in)
@@ -47,7 +34,7 @@ See https://docs.python.org/3/library/re.html and github.readme for more info
     retval = await macro_utils.add_macro(ctx, components[0], components[1], components[2])
     await handle_message(ctx, retval)
 
-@bot.command(name='list', help='list existing macro commands')
+@bot.command(name='list')
 async def list_macro(ctx):
     await ctx.send(await macro_utils.list_macros(ctx))
 
@@ -59,14 +46,20 @@ async def delete_macro(ctx, macro: int):
 
 
 
-@bot.command(name='roll', help='rolls dice')
+@bot.command(name='roll')
 async def roll(ctx):
     message_in = f"{ctx.message.content[len(ctx.prefix+ctx.command.name+' '):]}"
+    if message_in == 'help':
+        await ctx.send(rf"https://github.com/wtbutler/Roundhouse/blob/main/README.md#usage")
+        return
     await handle_message(ctx, message_in)
 
-@bot.command(name='r', help='rolls dice')
+@bot.command(name='r')
 async def r(ctx):
     message_in = f"{ctx.message.content[len(ctx.prefix+ctx.command.name+' '):]}"
+    if message_in == 'help':
+        await ctx.send(rf"https://github.com/wtbutler/Roundhouse/blob/main/README.md#usage")
+        return
     await handle_message(ctx, message_in)
 
 async def handle_message(ctx, message_in):
@@ -79,5 +72,9 @@ async def handle_message(ctx, message_in):
         message = f"{mention}\n{await util.error_message('Message too long')}"
     print(f"\treturning:\n{result}\n")
     await ctx.send(message)
+
+@bot.command(name='help')
+async def help(ctx):
+    await ctx.send('https://github.com/wtbutler/Roundhouse/blob/main/README.md')
 
 bot.run(TOKEN)

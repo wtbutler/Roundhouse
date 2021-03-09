@@ -140,8 +140,8 @@ useful for nWoD *9again* and *8again* (`Xa9`, `Xa8`).
 ## Todo
 
 - [x] Make this readme  
+- [x] Add better help messages  
 - [ ] Make threadsafe  
 - [ ] Make macro listing scrollable  
 - [ ] Add smarter detection of long messages to mid-roll  
-- [ ] Add better help messages  
 - [ ] Make `<test>` optional when adding a macro  
