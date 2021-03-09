@@ -2,13 +2,13 @@
 Even more superior dice bot for Discord
 
 It's basically
-(Sidekick)[https://github.com/ArtemGr/Sidekick],
+[Sidekick](https://github.com/ArtemGr/Sidekick),
 except it actually works *and* it's open source
 
 ## How to install
 
-Follow this link:
-www.google.com
+Follow this link:  
+<Link will be added when it's threadsafe>
 
 Or, because this is open source, feel free to clone the repo and create your own version of it!
 
@@ -77,19 +77,19 @@ Appending a `r1` or `r<3` to a basic roll will cause it to reroll once if the fi
 the criteria. `r1r2r4` will reroll if the roll has a value of 1, 2, or 4. `r<3` will reroll if the
 die has a value less than three.
 
-`/r 1d20r1` - Roll a 20 sided die (because halflings are lucky)
+`/r 1d20r1` - Roll a 20 sided die (because halflings are lucky).
 
 `/r 2d6r<3+3` - Roll 2 six sided dice and reroll 1s and 2s, for example the D&D 5e Great Weapon
-Fighting fighting style
+Fighting fighting style.
 
 `/r 8d6r<=2` - Roll 8 six sided dice and reroll 1s and 2s, for example casting D&D 5e Fireball
-with the Elemental Adept (fire) feat
+with the Elemental Adept (fire) feat.
 
 ### Fate dice
 
-`/r 4dF` - Roll [Fudge/Fate dice](http://rpg.stackexchange.com/questions/1765/what-game-circumstance-uses-fudge-dice) dice
+`/r 4dF` - Roll [Fudge/Fate dice](http://rpg.stackexchange.com/questions/1765/what-game-circumstance-uses-fudge-dice) dice.
 
-`/r 4dF+2` - Roll Fudge/Fate dice with a modifier
+`/r 4dF+2` - Roll Fudge/Fate dice with a modifier.
 
 ### Count dice
 
@@ -99,21 +99,21 @@ will count the number of rolls that meet that criteria instead of summing the ro
 append a `f1` or `f<3` to add a failure condition. Failures and successes are counted separately,
 but the result is the result of successes-failures.
 
-`/r 3d10>=6f1` - oWoD roll, rolling a one is a failure, rolling more failures than successes is a *botch*
+`/r 3d10>=6f1` - oWoD roll, rolling a one is a failure, rolling more failures than successes is a *botch*.
 
-`/r 7d10!>7` - nWoD roll, tens explode, 8s and up are treated like a successes
+`/r 7d10!>7` - nWoD roll, tens explode, 8s and up are treated like a successes.
 
-`/r 1d10=10t10` - If a ten is rolled, count it twice
+`/r 1d10=10t10` - If a ten is rolled, count it twice.
 
-`/r 1d10>=8f1f2` - a one *or a two* is a failure
+`/r 1d10>=8f1f2` - a one *or a two* is a failure.
 
-`/r 1d10>=8f<=2` - a one *or a two* is a failure
+`/r 1d10>=8f<=2` - a one *or a two* is a failure (identical to above).
 
 ## Math
 
-`/r (2+2)^3` - do math
+`/r (2+2)^3` - do math.
 
-`/r 3d6^2` - do math with dice
+`/r 3d6^2` - do math with dice.
 
 ## Macros
 
@@ -133,4 +133,15 @@ shorthand.
 `/add ([0-9]+)a([0-9]+) => \1d10e>=\2>=8` - Adds a pattern that expands `XaY` into `Xd10e>=Y>=8`,
 useful for nWoD *9again* and *8again* (`Xa9`, `Xa8`).
 
-## Other things
+`/list` - Lists the existing patterns for the server
+
+`/delete <macro>` - Delete a macro by the id (`<macro>`) as listed in `/list`
+
+## Todo
+
+- [x] Make this readme  
+- [ ] Make threadsafe  
+- [ ] Make macro listing scrollable  
+- [ ] Add smarter detection of long messages to mid-roll  
+- [ ] Add better help messages  
+- [ ] Make `<test>` optional when adding a macro  
