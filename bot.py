@@ -51,7 +51,7 @@ See https://docs.python.org/3/library/re.html and github.readme for more info
 async def list_macro(ctx):
     await ctx.send(await macro_utils.list_macros(ctx))
 
-@bot.command(name='delete', help='list existing macro commands')
+@bot.command(name='delete', help='delete specified macro commands')
 async def delete_macro(ctx, macro: int):
     await ctx.send(await macro_utils.remove_macro(ctx, macro))
 

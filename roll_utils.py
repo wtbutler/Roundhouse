@@ -63,11 +63,22 @@ async def handle_request(ctx, roll_request):
         print(comment)
     else:
         request = roll_request
-    expanded = await macro_utils.expand_macro(ctx, request)
-    if expanded:
-        request = expanded
 
     calculate = await tokenize(request)
+    matched = False
+    for i in range(len(calculate)):
+        print(f"checking if {calculate[i]} is a macro")
+        expanded = await macro_utils.expand_macro(ctx, calculate[i])
+        if expanded:
+            print("It is!")
+            print(expanded)
+            calculate[i] = f"({expanded})"
+            print(calculate[i])
+            matched = True
+    if matched:
+        print("We matched some stuff")
+        request = ''.join(calculate)
+        calculate = await tokenize(request)
     print(calculate)
     printable = calculate[:]
     request = ''.join(printable)
