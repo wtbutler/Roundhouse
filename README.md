@@ -117,4 +117,20 @@ but the result is the result of successes-failures.
 
 ## Macros
 
-## Other thing
+Add macros to a server that can be expanded into proper patterns, which allows you to create
+simplified custom syntax for rolls that you use a lot.
+
+`/add <pattern> => <target>` - Adds the pattern `<pattern>` and expands it to `<target>`.
+
+`/add <pattern> => <target> | <test>` - Adds the pattern `<pattern>` and expands it to `<target>`,
+then tests it with `<test>`.
+
+`/add F([0-9]+) => 4dF+\1` - Adds a pattern that expands `FN` to `4dF+N`, useful for Fate shorthand.
+
+`/add n([0-9]+) => \1d10!>=8` - Adds a pattern that expands `nX` into `Xd10!>=8`, useful for nWoD
+shorthand.
+
+`/add ([0-9]+)a([0-9]+) => \1d10e>=\2>=8` - Adds a pattern that expands `XaY` into `Xd10e>=Y>=8`,
+useful for nWoD *9again* and *8again* (`Xa9`, `Xa8`).
+
+## Other things
