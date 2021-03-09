@@ -23,7 +23,7 @@ async def add_macro(ctx):
     message_in = f"{ctx.message.content[len(ctx.prefix+ctx.command.name+' '):]}"
     mention = ctx.author.mention
     if message_in == 'help':
-        await ctx.send(rf"https://github.com/wtbutler/Roundhouse/blob/main/README.md#macros")
+        await ctx.send(rf"https://github.com/wtbutler/Roundhouse#macros")
         return
     macro = re.compile(r"^(?P<pattern>.+) => (?P<target>.+) \| (?P<test>.+)$")
     match = macro.match(message_in)
@@ -50,7 +50,7 @@ async def delete_macro(ctx, macro: int):
 async def roll(ctx):
     message_in = f"{ctx.message.content[len(ctx.prefix+ctx.command.name+' '):]}"
     if message_in == 'help':
-        await ctx.send(rf"https://github.com/wtbutler/Roundhouse/blob/main/README.md#usage")
+        await ctx.send(rf"https://github.com/wtbutler/Roundhouse#usage")
         return
     await handle_message(ctx, message_in)
 
@@ -75,6 +75,6 @@ async def handle_message(ctx, message_in):
 
 @bot.command(name='help')
 async def help(ctx):
-    await ctx.send('https://github.com/wtbutler/Roundhouse/blob/main/README.md')
+        await ctx.send(rf"https://github.com/wtbutler/Roundhouse")
 
 bot.run(TOKEN)
