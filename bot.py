@@ -12,7 +12,7 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_SERVER')
 
-bot = commands.Bot(command_prefix='/', help_command=None)
+bot = commands.Bot(command_prefix='?', help_command=None)
 
 
 
@@ -31,7 +31,10 @@ async def add_macro(ctx):
         await ctx.send(f"{mention}\nIncorrect syntax for macro")
         return
     components = match.groups()
-    retval = await macro_utils.add_macro(ctx, components[0], components[1], components[2])
+    added, retval = await macro_utils.add_macro(ctx, components[0], components[1], components[2])
+    if not added:
+        await ctx.send(f"{mention}\n{retval}")
+        return
     await handle_message(ctx, retval)
 
 @bot.command(name='list')
