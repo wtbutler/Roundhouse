@@ -66,14 +66,14 @@ async def r(ctx):
     await handle_message(ctx, message_in)
 
 async def handle_message(ctx, message_in):
-    comment = 0
-    if message_in.find('##'):
+    comment = -1
+    if '##' in message_in:
         m, comment = message_in[:message_in.find('##')].strip(), message_in[message_in.find('##')+2:].strip()
         message_in = m
     result = await roll_utils.handle_dice(ctx, message_in)
     print(f"{ctx.author} asked for {message_in}")
     mention = ctx.author.mention
-    if comment == 0:
+    if comment == -1:
         message = f"{mention}\n{result}"
     else:
         message = f"{mention}\n{comment}\n{result}"
