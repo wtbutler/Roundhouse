@@ -6,13 +6,13 @@ import os, re
 
 import discord
 from discord.ext import commands
-from dotenv import load_dotenv
+from dotenv import Dotenv
 
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
-GUILD = os.getenv('DISCORD_SERVER')
+temp = Dotenv(".env")
+TOKEN = temp["DISCORD_TOKEN"]
+GUILD = temp["DISCORD_SERVER"]
 
-bot = commands.Bot(command_prefix='?', help_command=None)
+bot = commands.Bot(command_prefix='/', help_command=None)
 
 
 
@@ -66,10 +66,17 @@ async def r(ctx):
     await handle_message(ctx, message_in)
 
 async def handle_message(ctx, message_in):
+    comment = 0
+    if message_in.find('##'):
+        m, comment = message_in[:message_in.find('##')].strip(), message_in[message_in.find('##')+2:].strip()
+        message_in = m
     result = await roll_utils.handle_dice(ctx, message_in)
     print(f"{ctx.author} asked for {message_in}")
     mention = ctx.author.mention
-    message = f"{mention}\n{result}"
+    if comment == 0:
+        message = f"{mention}\n{result}"
+    else:
+        message = f"{mention}\n{comment}\n{result}"
     if len(message) >= 2000:
         print(f"\terror: message too long")
         message = f"{mention}\n{await util.error_message('Message too long')}"
