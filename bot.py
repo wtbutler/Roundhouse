@@ -12,7 +12,7 @@ temp = Dotenv(".env")
 TOKEN = temp["DISCORD_TOKEN"]
 GUILD = temp["DISCORD_SERVER"]
 
-bot = commands.Bot(command_prefix='/', help_command=None)
+bot = commands.Bot(command_prefix=['/', '?'], help_command=None)
 
 
 
