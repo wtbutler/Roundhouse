@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import roll_utils
 import macro_utils
 
@@ -35,6 +35,7 @@ async def add_macro(ctx):
     if not added:
         await ctx.send(f"{mention}\n{retval}")
         return
+    print(retval)
     await handle_message(ctx, retval)
 
 @bot.command(name='list')
@@ -79,7 +80,7 @@ async def handle_message(ctx, message_in):
         message = f"{mention}\n{comment}\n{result}"
     if len(message) >= 2000:
         print(f"\terror: message too long")
-        message = f"{mention}\n{await util.error_message('Message too long')}"
+        message = f"{mention}\n{await roll_utils.error_message('Message too long')}"
     print(f"\treturning:\n{result}\n")
     await ctx.send(message)
 

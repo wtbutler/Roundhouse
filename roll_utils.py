@@ -3,6 +3,7 @@ import macro_utils
 from error_messages import error_messages
 
 tokens = ["+", "-", "*", "/", "^", "(", ")"]
+dice_cutoff_num = 1000
 
 async def tokenize(request):
     tokenized = []
@@ -278,27 +279,35 @@ async def explode_dice(message):
         explode_vals = list(set([int(i) for i in command['explode_vals'].split('e')[1:]]))
         if len(explode_vals) == max_dice:
             return None, None, "Can't explode on every value"
+        dice_rolled = 0
         while dice_to_roll > 0:
+            if dice_rolled > dice_cutoff_num:
+                return False, False, "Exploded too many times!"
             roll = random.randint(1, max_dice)
             rolls += [roll]
             if not roll in explode_vals:
                 dice_to_roll -= 1
+            dice_rolled += 1
     elif command['explode_cond']:
         # Conditional explode
         explode_cond = get_operator(command['explode_cond'])
         explode_cond_val = int(command['cond_val'])
         passes = False
-        for i in range(max_dice+1):
+        for i in range(1, max_dice+1):
             if not explode_cond(i, explode_cond_val):
                 passes = True
                 break
         if not passes:
             return False, False, "Can't explode on every value"
+        dice_rolled = 0
         while dice_to_roll > 0:
+            if dice_rolled > dice_cutoff_num:
+                return False, False, "Exploded too many times!"
             roll = random.randint(1, max_dice)
             rolls += [roll]
             if not explode_cond(roll, explode_cond_val):
                 dice_to_roll -= 1
+            dice_rolled += 1
     else:
         # Base explode
         print("explode")
