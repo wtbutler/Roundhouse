@@ -1,18 +1,18 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import roll_utils
 import macro_utils
 
 import os, re
 
 import discord
+from discord import Intents
 from discord.ext import commands
-from dotenv import Dotenv
+from dotenv import dotenv_values
 
-temp = Dotenv(".env")
+temp = dotenv_values(".env")
 TOKEN = temp["DISCORD_TOKEN"]
-GUILD = temp["DISCORD_SERVER"]
 
-bot = commands.Bot(command_prefix=['/', '?'], help_command=None)
+bot = commands.Bot(command_prefix=['/', '?'], help_command=None, intents=Intents(Intents.messages.flag))
 
 
 

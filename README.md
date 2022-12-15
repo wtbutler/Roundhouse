@@ -8,9 +8,23 @@ except it actually works *and* it's open source
 ## How to install
 
 Follow this link:  
-<Link will be added when it's threadsafe>
+<Link will be added when it is threadsafe>
 
 Or, because this is open source, feel free to clone the repo and create your own version of it!
+
+### Dependencies
+This bot uses the following standard libraries that come with python:
+* re
+* os
+* sys
+* json
+* random
+* operator
+
+It also uses the following libraries that need to be separately installed:
+* numpy
+* dotenv
+* discord
 
 ## Usage
 ### Basic Roll
