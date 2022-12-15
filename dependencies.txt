@@ -1,0 +1,12 @@
+random
+operator
+os
+re
+json
+sys
+
+numpy
+dotenv
+discord
+
+syncer
