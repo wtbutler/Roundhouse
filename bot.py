@@ -4,6 +4,7 @@ import macro_utils
 
 import os, re
 
+from discord import version_info as d__v
 from discord import Intents
 from discord.ext import commands
 from dotenv import dotenv_values
@@ -16,12 +17,10 @@ TOKEN = temp["DISCORD_TOKEN"]
 
 simple_intents=Intents()
 simple_intents.messages=True
-simple_intents.message_content=True
+simple_intents.guilds=True
+if d__v.major >= 2:
+    simple_intents.message_content=True
 bot = commands.Bot(command_prefix=['/', '?'], help_command=None, intents=simple_intents)
-
-
-
-
 
 
 @bot.command(name='add')

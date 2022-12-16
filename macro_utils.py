@@ -1,4 +1,5 @@
 import re, os, json
+import pkg_resources as thisdir
 
 json_folder = 'guild-json/'
 
@@ -13,7 +14,8 @@ async def add_macro(ctx, pattern, target, test):
         print(e)
         return False, f"Regex not valid"
     json_file = json_folder + str(ctx.guild.id) + ".json"
-    if os.path.exists(json_file):
+    json_file = thisdir.resource_filename(__name__, json_file)
+    if os.path_exists(json_file):
         with open(json_file) as infile:
             json_data = json.load(infile)
     else:
@@ -32,6 +34,7 @@ async def remove_macro(ctx, macro):
     if not ctx.guild:
         return "Must be in a server to store macros"
     json_file = json_folder + str(ctx.guild.id) + ".json"
+    json_file = thisdir.resource_filename(__name__, json_file)
     if os.path.exists(json_file):
         with open(json_file) as infile:
             json_data = json.load(infile)
@@ -51,6 +54,7 @@ async def expand_macro(ctx, request):
     if not ctx.guild:
         return None
     json_file = json_folder + str(ctx.guild.id) + ".json"
+    json_file = thisdir.resource_filename(__name__, json_file)
     if os.path.exists(json_file):
         with open(json_file) as infile:
             json_data = json.load(infile)
@@ -69,6 +73,7 @@ async def list_macros(ctx):
     if not ctx.guild:
         return "Must be in a server to store macros"
     json_file = json_folder + str(ctx.guild.id) + ".json"
+    json_file = thisdir.resource_filename(__name__, json_file)
     if os.path.exists(json_file):
         with open(json_file) as infile:
             json_data = json.load(infile)
