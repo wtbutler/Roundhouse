@@ -14,26 +14,26 @@ Or, because this is open source, feel free to clone the repo and create your own
 
 ### Dependencies
 This bot uses the following standard libraries that come with python:
-* re
-* os
-* sys
-* json
-* random
-* operator
+* `re`
+* `os`
+* `sys`
+* `json`
+* `random`
+* `operator`
 
 It also uses the following libraries that need to be separately installed:
-* numpy (version 1.16.2)
-* dotenv (version 0.0.5)
-* discord (version 1.7.1) (check using `pip3 show discord.py`)
-* pkg_resources (version 1.16.2)
+* `numpy` (version 1.16.2)
+* `python-dotenv` (version 0.21.0)
+* `discord` (version 1.7.1) (check using `pip3 show discord.py`)
+* `pkg_resources`
 
 ### Setup:
 
-If you're running python 3.7.3, then you should be fine. Unfortunately, some changes occurred in the `dotenv` package recently that are not backwards compatible, so if you have
+If you're running python `3.7.3`, then you should be fine. It also works for me on a system with python `3.10.9`, so hopefully that works too. 
 
 ### How to run:
 
-Run `bot.py` from the directory
+Run `bot.py` from the directory. Genuinely, that should be it.
 
 ## Usage
 ### Basic Roll
