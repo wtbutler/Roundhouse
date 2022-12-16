@@ -16,6 +16,7 @@ TOKEN = temp["DISCORD_TOKEN"]
 
 simple_intents=Intents()
 simple_intents.messages=True
+simple_intents.message_content=True
 bot = commands.Bot(command_prefix=['/', '?'], help_command=None, intents=simple_intents)
 
 
