@@ -4,15 +4,20 @@ import macro_utils
 
 import os, re
 
-import discord
 from discord import Intents
 from discord.ext import commands
 from dotenv import dotenv_values
+import pkg_resources
 
-temp = dotenv_values(".env")
+envpath = pkg_resources.resource_filename(__name__, ".env")
+print(envpath)
+temp = dotenv_values(envpath)
 TOKEN = temp["DISCORD_TOKEN"]
 
-bot = commands.Bot(command_prefix=['/', '?'], help_command=None, intents=Intents(Intents.messages.flag))
+simple_intents=Intents()
+simple_intents.messages=True
+bot = commands.Bot(command_prefix=['/', '?'], help_command=None, intents=simple_intents)
+
 
 
 

@@ -22,9 +22,18 @@ This bot uses the following standard libraries that come with python:
 * operator
 
 It also uses the following libraries that need to be separately installed:
-* numpy
-* dotenv
-* discord
+* numpy (version 1.16.2)
+* dotenv (version 0.0.5)
+* discord (version 1.7.1) (check using `pip3 show discord.py`)
+* pkg_resources (version 1.16.2)
+
+### Setup:
+
+If you're running python 3.7.3, then you should be fine. Unfortunately, some changes occurred in the `dotenv` package recently that are not backwards compatible, so if you have
+
+### How to run:
+
+Run `bot.py` from the directory
 
 ## Usage
 ### Basic Roll
